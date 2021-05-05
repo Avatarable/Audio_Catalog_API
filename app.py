@@ -1,17 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
 import json
-from sqlalchemy.ext.mutable import MutableList
-from sqlalchemy import PickleType
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://wmnfglqm:WoUvdTWDIgSWFkVxq6duOVf7DNJ6wsot@dumbo.db.elephantsql.com:5432/wmnfglqm'
 db = SQLAlchemy(app)
 
-# if not os.path.isfile('./test.db'):
-#     db.create_all()
 
 class Song(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,8 +23,7 @@ class Podcast(db.Model):
     duration = db.Column(db.Integer, nullable=False)
     uploaded_time = db.Column(db.DateTime, default=datetime.utcnow)
     host = db.Column(db.String(100), nullable=False)
-    participants = db.Column(MutableList.as_mutable(PickleType), default=[])
-    # participants = db.Column(db.ARRAY(db.String(100)))
+    participants = db.Column(db.ARRAY(db.String(100)))
 
 
     def __repr__(self):

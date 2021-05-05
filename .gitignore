@@ -2,3 +2,4 @@
 /__pycache__
 /Procfile
 test.py
+pysql_test.py
