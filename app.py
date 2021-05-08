@@ -201,4 +201,4 @@ def single_audio(audioType, id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True) #TODO
+    app.run()
